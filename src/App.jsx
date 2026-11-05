@@ -1,6 +1,10 @@
 
 function App() {
-  return <h1>Olá mundo</h1>
+  return  (
+    <div className="min-h-screen bg-background p-4 text-foreground">
+      <h1 className="font-heading text-3xl font-bold text-primary">hello world</h1>
+    </div>
+  )
 }
 
 export default App
