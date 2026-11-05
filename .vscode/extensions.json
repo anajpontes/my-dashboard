@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "oxc.oxc-vscode",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "EditorConfig.EditorConfig",
+    "usernamehw.errorlens"
+  ]
+}
