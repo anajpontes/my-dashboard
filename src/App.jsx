@@ -3,6 +3,7 @@ import Header from "./components/Header"
 import Menu from "./components/Menu"
 import Panel from "./components/Panel"
 import SummaryCard from "./components/SummaryCard"
+import InfoRow from './components/InfoRow.jsx'
 
 
 function App() {
@@ -22,11 +23,17 @@ function App() {
           <SummaryCard title="Review" value="8,6" />
         </div>
       </Panel>
-      <Panel id="highlight" title="Assistindo agora" className="md:col-span">
-        <h3 className="font-heading text-xl font-bold">Filmes</h3>
+      <Panel id="highlight" title="Assistindo agora" className="md:col-span-2">
+        <h3 className="font-heading text-xl font-bold">The OC</h3>
         <p className="mt-1 text-muted">
-          Filmes assistidos recentemente
+          Filmes/series assistidos recentemente
         </p>
+        <div className="mt-4 grid gap-x-6 md:grid-cols-span-2">
+          <InfoRow label="Temporadas" value="4"/>
+          <InfoRow label="Gênero" value="Drama"/>
+          <InfoRow label="Diretor" value="Josh Schwartz "/>
+          <InfoRow label="Ano" value="2003 a 2007"/>
+        </div>
       </Panel>
       <Panel id="list" title="Lista" className="xl:min-h-80">Lista</Panel>
       <Panel id="chart" title="Gráfico" className="xl:min-h-80">Gráfico</Panel>
