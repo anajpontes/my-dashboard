@@ -5,6 +5,7 @@ import Panel from "./components/Panel"
 import SummaryCard from "./components/SummaryCard"
 import InfoRow from './components/InfoRow.jsx'
 import StatusBadge from "./components/StatusBadge"
+import DetailsToggle from "./components/DetailsToggle"
 
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
           <InfoRow label="Gênero" value="Drama"/>
           <InfoRow label="Diretor" value="Josh Schwartz "/>
           <InfoRow label="Ano" value="2003 a 2007"/>
+          <DetailsToggle>
+            <p>Falta 3 episodios e 2 temporadas.</p>
+          </DetailsToggle>
         </div>
       </Panel>
 
