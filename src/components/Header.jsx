@@ -5,9 +5,9 @@ function Header() {
            md:flex-row md:items-baseline md:justify-between md:px-8"
         >
             <h1 className="font-heading text-2xl font-bold md:text-3xl">
-                Dashboard - Series
+                Dashboard - Filmes
             </h1>
-            <p className="text-muted">Minhas series</p>
+            <p className="text-muted">Meus Filmes</p>
 
         </header>
     )
