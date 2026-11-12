@@ -7,6 +7,12 @@ import InfoRow from './components/InfoRow.jsx'
 import StatusBadge from "./components/StatusBadge"
 import DetailsToggle from "./components/DetailsToggle"
 
+const summaryCards = [
+  { id: 'watched', title: 'Vistos', value: 42, icon:"🎞️"},
+  { id: 'watchList', title: 'WatchList', value: 318, icon:"⏱️"},
+  { id: 'favorites', title: 'Favoritos', value: 17, icon:"🏆", isHighlighted: true},
+  { id: 'reviews', title: 'Reviews', value: "8,5", icon:"🎞️"},
+]
 
 function App() {
   return  (
@@ -19,11 +25,16 @@ function App() {
       <Menu/>
       <Panel id="summary" title="Resumo" className="md:col-span-2">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          <SummaryCard title="Vistos" value={42} icon="🎮" />
-          <SummaryCard title="WatchList" value={318} icon="⏱️" />
-          <SummaryCard title="Favoritos" value={17} icon="🏆" isHighlighted />
-          <SummaryCard title="Review" value="8,6" />
-        </div>
+         {summaryCards.map((card) => (
+         <SummaryCard
+          key={card.id}
+          title={card.title}
+          value={card.value}
+          icon={card.icon}
+          isHighlighted={card.isHighlighted}
+         />
+        ))}
+      </div>
       </Panel>
 
       <Panel id="highlight" title="Assistindo agora" className="md:col-span-2">
@@ -42,10 +53,19 @@ function App() {
           <DetailsToggle>
             <p>Falta 3 episodios e 2 temporadas.</p>
           </DetailsToggle>
+          <DetailsToggle>
+            <p>Elenco:</p>
+            <p> • Ben McKenzie — Ryan Atwood</p>
+            <p> • Adam Brody — Seth Cohen</p>
+            <p> • Mischa Barton — Marissa Cooper</p>
+            <p> • Rachel Bilson — Summer Roberts</p>
+          </DetailsToggle>
         </div>
       </Panel>
 
-      <Panel id="list" title="Lista" className="xl:min-h-80">Lista</Panel>
+      <Panel id="list" title="Lista" className="xl:min-h-80">
+        <StatusBadge label="WatchList"></StatusBadge>
+      </Panel>
 
       <Panel id="chart" title="Gráfico" className="xl:min-h-80">Gráfico</Panel>
       
