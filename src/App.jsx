@@ -20,7 +20,7 @@ function App() {
       <Panel id="summary" title="Resumo" className="md:col-span-2">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <SummaryCard title="Vistos" value={42} icon="🎮" />
-          <SummaryCard title="Lista" value={318} icon="⏱️" />
+          <SummaryCard title="WatchList" value={318} icon="⏱️" />
           <SummaryCard title="Favoritos" value={17} icon="🏆" isHighlighted />
           <SummaryCard title="Review" value="8,6" />
         </div>
@@ -30,14 +30,15 @@ function App() {
         <h3 className="font-heading text-xl font-bold">The OC</h3>
         <StatusBadge label="Assistindo" isActive/>
         <StatusBadge label="Drama" />
+        <StatusBadge label="Temp 2, Ep 17"/>
         <p className="mt-1 text-muted">
           Filmes/series assistidos recentemente
         </p>
-        <div className="mt-4 grid gap-x-6 md:grid-cols2">
+        <div className="mt-4 grid gap-x-6 md:grid-cols-2">
           <InfoRow label="Temporadas" value="4"/>
           <InfoRow label="Gênero" value="Drama"/>
           <InfoRow label="Diretor" value="Josh Schwartz "/>
-          <InfoRow label="Ano" value="2003 a 2007"/>
+          <InfoRow label="Ano" value="(2003)"/>
           <DetailsToggle>
             <p>Falta 3 episodios e 2 temporadas.</p>
           </DetailsToggle>
