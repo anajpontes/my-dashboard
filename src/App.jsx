@@ -14,6 +14,15 @@ const summaryCards = [
   { id: 'reviews', title: 'Reviews', value: "8,5", icon:"🎞️"},
 ]
 
+const movies = [
+  { id: 'interestelar', title: 'Interestelar', hours: 2, isCompleted: false },
+  { id: 'lalaland', title: 'La La Land', hours: 2, isCompleted: true },
+  { id: 'theoffice', title: 'The Office', hours: 74, isCompleted: true },
+  { id: 'parasite', title: 'Parasite', hours: 2, isCompleted: false },
+  { id: 'gilmoregirls', title: 'Gilmore Girls', hours: 83, isCompleted: false },
+  { id: '13goingon30', title: '13 going on 30', hours: 1, isCompleted: false },
+]
+
 function App() {
   return  (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
@@ -54,7 +63,7 @@ function App() {
             <p>Falta 3 episodios e 2 temporadas.</p>
           </DetailsToggle>
           <DetailsToggle>
-            <p>Elenco:</p>
+            <p>Elenco Principal:</p>
             <p> • Ben McKenzie — Ryan Atwood</p>
             <p> • Adam Brody — Seth Cohen</p>
             <p> • Mischa Barton — Marissa Cooper</p>
@@ -64,7 +73,21 @@ function App() {
       </Panel>
 
       <Panel id="list" title="Lista" className="xl:min-h-80">
-        <StatusBadge label="WatchList"></StatusBadge>
+        <ul>
+          {movies.map((movie) => (
+            <li
+            key={movie.id}
+            className="flex flex-wrap items-center justify-between gap-2
+             border-b border-border py-3"
+         >
+          <div>
+            <p className="font-bold">{movie.title}</p>
+            <p className="text-sm text-muted">{movie.hours} horas</p>
+          </div>
+
+             </li>
+          ))}
+        </ul>
       </Panel>
 
       <Panel id="chart" title="Gráfico" className="xl:min-h-80">Gráfico</Panel>
