@@ -6,6 +6,7 @@ import SummaryCard from "./components/SummaryCard"
 import InfoRow from './components/InfoRow.jsx'
 import StatusBadge from "./components/StatusBadge"
 import DetailsToggle from "./components/DetailsToggle"
+import ListItem from "./components/ListItem"
 
 const summaryCards = [
   { id: 'watched', title: 'Vistos', value: 42, icon:"🎞️"},
@@ -20,7 +21,7 @@ const movies = [
   { id: 'theoffice', title: 'The Office', hours: 74, isCompleted: true },
   { id: 'parasite', title: 'Parasite', hours: 2, isCompleted: false },
   { id: 'gilmoregirls', title: 'Gilmore Girls', hours: 83, isCompleted: false },
-  { id: '13goingon30', title: '13 going on 30', hours: 1, isCompleted: false },
+  { id: '13goingon30', title: '13 Going On 30', hours: 1, isCompleted: false },
 ]
 
 function App() {
@@ -75,17 +76,7 @@ function App() {
       <Panel id="list" title="Lista" className="xl:min-h-80">
         <ul>
           {movies.map((movie) => (
-            <li
-            key={movie.id}
-            className="flex flex-wrap items-center justify-between gap-2
-             border-b border-border py-3"
-         >
-          <div>
-            <p className="font-bold">{movie.title}</p>
-            <p className="text-sm text-muted">{movie.hours} horas</p>
-          </div>
-
-             </li>
+           <ListItem key={movie.id} title={movie.title} hours={movie.hours} />
           ))}
         </ul>
       </Panel>
