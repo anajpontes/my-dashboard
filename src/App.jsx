@@ -76,7 +76,11 @@ function App() {
       <Panel id="list" title="Lista" className="xl:min-h-80">
         <ul>
           {movies.map((movie) => (
-           <ListItem key={movie.id} title={movie.title} hours={movie.hours} />
+           <ListItem 
+           key={movie.id}
+           title={movie.title}
+           hours={movie.hours}
+           isCompleted={movie.id === "interestelar"} />
           ))}
         </ul>
       </Panel>
