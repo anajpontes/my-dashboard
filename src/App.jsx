@@ -7,6 +7,15 @@ import InfoRow from './components/InfoRow.jsx'
 import StatusBadge from "./components/StatusBadge"
 import DetailsToggle from "./components/DetailsToggle"
 import ListItem from "./components/ListItem"
+import { useState } from "react"
+
+
+const filterOptions = [
+  {id: 'all', label: 'Todos'},
+  {id: 'unwatched', label: 'Não visto'},
+  {id: 'completed', label: 'Visto'},
+]
+
 
 const summaryCards = [
   { id: 'watched', title: 'Vistos', value: 42, icon:"🎞️"},
@@ -16,7 +25,7 @@ const summaryCards = [
 ]
 
 const movies = [
-  { id: 'interestelar', title: 'Interestelar', hours: 2, isCompleted: false },
+  { id: 'interestelar', title: 'Interestelar', hours: 2, isCompleted: true },
   { id: 'lalaland', title: 'La La Land', hours: 2, isCompleted: true },
   { id: 'theoffice', title: 'The Office', hours: 74, isCompleted: true },
   { id: 'parasite', title: 'Parasite', hours: 2, isCompleted: false },
@@ -25,6 +34,14 @@ const movies = [
 ]
 
 function App() {
+  const [statusFilter, setStatusFilter] =useState('all');
+
+  const visibleMovies = movies.filter((movie) => {
+    if (statusFilter === 'completed') return movie.isCompleted
+    if (statusFilter === 'unwatched') return !movie.isCompleted
+    return true
+  })
+
   return  (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
     <Header/>
@@ -74,15 +91,38 @@ function App() {
       </Panel>
 
       <Panel id="list" title="Lista" className="xl:min-h-80">
+        <div className="mb-4 flex flex-wrap gap-2">
+          {filterOptions.map((option) => (
+            <button
+            key={option.id}
+            type="button"
+            onClick={() => setStatusFilter(option.id)}
+            aria-pressed={statusFilter === option.id}
+            className={
+              statusFilter === option.id
+              ? 'rounded-full border border-primary bg-primary px-3 py-1 text-sm font-bold text-background'
+              : 'rounded-full border border-border px-3 py-1 text-sm font-bold text-muted hover:border-primary'
+            }
+             > {option.label} 
+             </button>
+          ))}
+        </div>
+
+        {visibleMovies.length === 0 ? (
+          <p className="text-muted">Nenhum filme na lista ainda.</p>
+        ) : (
+        
         <ul>
-          {movies.map((movie) => (
+          {visibleMovies.map((movie) => (
            <ListItem 
            key={movie.id}
            title={movie.title}
            hours={movie.hours}
-           isCompleted={movie.id === "interestelar"} />
+           isCompleted={movie.id === "interestelar"}/>
           ))}
         </ul>
+
+        )}
       </Panel>
 
       <Panel id="chart" title="Gráfico" className="xl:min-h-80">Gráfico</Panel>
