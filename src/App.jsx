@@ -8,9 +8,7 @@ import StatusBadge from "./components/StatusBadge"
 import DetailsToggle from "./components/DetailsToggle"
 import ListItem from "./components/ListItem"
 import { useState } from "react"
-
-
-
+import { movies } from './data/movies.js'
 
 
 const filterOptions = [
@@ -20,26 +18,21 @@ const filterOptions = [
 ]
 
 
-const summaryCards = [
-  { id: 'watched', title: 'Vistos', value: 42, icon:"🎞️"},
-  { id: 'watchList', title: 'WatchList', value: 318, icon:"⏱️"},
-  { id: 'favorites', title: 'Favoritos', value: 17, icon:"🏆", isHighlighted: true},
-  { id: 'reviews', title: 'Reviews', value: "8,5", icon:"🎞️"},
-]
-
-const movies = [
-  { id: 'interestelar', title: 'Interestelar', hours: 2, isCompleted: true },
-  { id: 'lalaland', title: 'La La Land', hours: 2, isCompleted: true },
-  { id: 'theoffice', title: 'The Office', hours: 74, isCompleted: true },
-  { id: 'parasite', title: 'Parasite', hours: 2, isCompleted: false },
-  { id: 'gilmoregirls', title: 'Gilmore Girls', hours: 83, isCompleted: false },
-  { id: '13goingon30', title: '13 Going On 30', hours: 1, isCompleted: false },
-]
 
 function App() {
   const [statusFilter, setStatusFilter] =useState('all');
   const [search, setSearch] = useState('')
   const searchTerm = search.trim().toLowerCase();
+  const totalHours = movies.reduce((total, movie) => total + movie.hours, 0)
+  const completedCount = movies.filter((movie) => movie.isCompleted).length
+
+  // arrumar watchlist, favorites, reviews para fazer sentido
+  const summaryCards = [
+  { id: 'watched', title: 'Vistos', value: totalHours, icon:"🎞️"},
+  { id: 'watchList', title: 'WatchList', value: movies.length, icon:"⏱️"},
+  { id: 'favorites', title: 'Favoritos', value: completedCount, icon:"🏆", isHighlighted: true},
+  { id: 'reviews', title: 'Reviews', value: movies.length - completedCount, icon:"🎞️"},
+]
 
   const visibleMovies = movies.filter((movie) => {
     const matchesSearch = movie.title.toLowerCase().includes(searchTerm)
