@@ -10,9 +10,12 @@ import ListItem from "./components/ListItem"
 import { useState } from "react"
 
 
+
+
+
 const filterOptions = [
   {id: 'all', label: 'Todos'},
-  {id: 'unwatched', label: 'Não visto'},
+  {id: 'unwatched', label: 'Quero ver'},
   {id: 'completed', label: 'Visto'},
 ]
 
@@ -35,11 +38,14 @@ const movies = [
 
 function App() {
   const [statusFilter, setStatusFilter] =useState('all');
+  const [search, setSearch] = useState('')
+  const searchTerm = search.trim().toLowerCase();
 
   const visibleMovies = movies.filter((movie) => {
-    if (statusFilter === 'completed') return movie.isCompleted
-    if (statusFilter === 'unwatched') return !movie.isCompleted
-    return true
+    const matchesSearch = movie.title.toLowerCase().includes(searchTerm)
+    if (statusFilter === 'completed') return movie.isCompleted && matchesSearch
+    if (statusFilter === 'unwatched') return !movie.isCompleted && matchesSearch
+    return matchesSearch
   })
 
   return  (
@@ -91,8 +97,22 @@ function App() {
       </Panel>
 
       <Panel id="list" title="Lista" className="xl:min-h-80">
+        <label htmlFor="movie-search" className="text-sm text-muted"> 
+          Buscar pelo nome 
+          </label>
+          <input
+          id="movie-search" 
+          type="search" 
+          value={search} 
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Ex.: titanic"
+          className="mt-1 mb-3 w-full rounded-lg border border-border bg-background
+          px-3 py-2 focus:border-primary focus:outline-none" 
+          />  
+
         <div className="mb-4 flex flex-wrap gap-2">
           {filterOptions.map((option) => (
+
             <button
             key={option.id}
             type="button"
