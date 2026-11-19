@@ -1,23 +1,25 @@
 import { Link } from 'react-router-dom';
-import { movies } from '../data/movies';
 import Panel from '../components/Panel';
 import StatusBadge from '../components/StatusBadge';
 import DetailsToggle from '../components/DetailsToggle';
 import InfoRow from '../components/InfoRow';
 import SummaryCard from '../components/SummaryCard';
 import ListItem from '../components/ListItem';
+import { useMovies } from '../context/MoviesContext';
 
 function DashboardPage() {
 
-    // … dentro de DashboardPage, antes do return:
+    const { movies } = useMovies()
+
     const firstMovies = movies.slice(0, 3);
     const totalHours = movies.reduce((total, movie) => total + movie.hours, 0)
     const completedCount = movies.filter((movie) => movie.isCompleted).length
 
+
     const summaryCards = [
-  { id: 'watched', title: 'Vistos', value: totalHours, icon:"🎞️"},
+  { id: 'watched', title: 'Vistos', value: completedCount, icon:"🎞️"},
   { id: 'watchList', title: 'WatchList', value: movies.length, icon:"⏱️"},
-  { id: 'favorites', title: 'Favoritos', value: completedCount, icon:"🏆", isHighlighted: true},
+  { id: 'favorites', title: 'Favoritos', value: totalHours, icon:"🏆", isHighlighted: true},
   { id: 'reviews', title: 'Reviews', value: movies.length - completedCount, icon:"🎞️"},
 ]
 
@@ -62,6 +64,7 @@ function DashboardPage() {
           </DetailsToggle>
         </div>
       </Panel>
+
 
     <Panel id="list" title="Meus filmes" className="xl:min-h-80">
       {firstMovies.length === 0 ? (

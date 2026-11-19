@@ -2,7 +2,7 @@
 import { useState } from "react";
 import ListItem from "../components/ListItem"
 import Panel from "../components/Panel"
-import { movies } from "../data/movies";
+import { useMovies } from "../context/MoviesContext";
 
  
 const filterOptions = [
@@ -13,10 +13,11 @@ const filterOptions = [
 
 function ListPage () {
 
+  const { movies } = useMovies()
   const [statusFilter, setStatusFilter] =useState('all');
   const [search, setSearch] = useState('')
   const searchTerm = search.trim().toLowerCase();
-
+  
 
   const visibleMovies = movies.filter((movie) => {
     const matchesSearch = movie.title.toLowerCase().includes(searchTerm)
