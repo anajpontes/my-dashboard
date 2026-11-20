@@ -4,6 +4,8 @@ import Menu from "./components/Menu"
 import { Routes, Route } from 'react-router-dom'
 import DashboardPage from './pages/DashboardPage.jsx'
 import ListPage from './pages/ListPage.jsx'
+import NewItemPage from "./pages/NewItemPage"
+import NotFoundPage from "./pages/NotFoundPage"
 
 
 
@@ -20,6 +22,8 @@ function App() {
       <Routes>
           <Route path="/" element={<DashboardPage />} />
           <Route path="/lista" element={<ListPage />} />
+          <Route path="/novo" element={<NewItemPage />}/>
+          <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
     </main>
     <Footer />
