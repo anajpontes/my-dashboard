@@ -1,10 +1,17 @@
 import Panel from '../components/Panel.jsx'
 import ItemForm from '../components/ItemForm'
+import { useMovies } from '../context/MoviesContext.js'
+import { useNavigate } from 'react-router-dom'
 
 
 function NewItemPage() {
+    const { addMovie } = useMovies()
+    const navigate = useNavigate()
+
   function handleSave(values) {
-    console.log(values)
+    const newMovie = { id: String(Date.now()), ...values }
+    addMovie(newMovie)
+    navigate('/lista')
   }
  
   return (
